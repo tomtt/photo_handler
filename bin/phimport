@@ -1,0 +1,12 @@
+#!/usr/bin/env ruby
+
+lib_dir = File.expand_path(File.join(File.dirname(__FILE__), '..', 'lib'))
+$:.unshift(lib_dir) unless
+  $:.include?(lib_dir) || $:.include?(File.expand_path(lib_dir))
+require 'photo_handler'
+
+usage = <<EOT
+Usage: #{$0}
+This script will move files from a source of digital images to a location on disk. It is not implemented yet.
+EOT
+STDERR.puts usage
