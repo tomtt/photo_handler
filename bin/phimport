@@ -7,12 +7,17 @@ require 'photo_handler'
 
 usage = <<EOT
 Usage: #{$0}
-This script will move files from a source of digital images to a location on disk. It is not implemented yet.
+This script will move files from a source of digital images to a location on disk. It is configured by
+editing the config/photo_handler.yml file.
 EOT
 STDERR.puts usage
 
 PhotoHandler.source_images.each do |source_image|
-  puts "#{source_image} -> %s" %
-    File.join(PhotoHandler::Config.image_destination_directory,
-              PhotoHandler::Photo.new(source_image).destination_file_name)
+  dest = File.join(PhotoHandler::Config.image_destination_directory,
+                   PhotoHandler::Photo.new(source_image).destination_file_name)
+  dir = File.dirname(dest)
+  unless File.exist?(dir)
+    FileUtils.mkdir_p(dir, :verbose => true)
+  end
+  FileUtils.mv(source_image, dest, :verbose => true)
 end
