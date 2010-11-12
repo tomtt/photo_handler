@@ -8,7 +8,14 @@ module PhotoHandler
     end
 
     def exif
-      @exif ||= EXIFR::JPEG.new(@filename)
+      unless @exif
+        begin
+          @exif = EXIFR::JPEG.new(@filename)
+        rescue EXIFR::MalformedJPEG
+          @exif = EXIFR::TIFF.new(@filename)
+        end
+      end
+      @exif
     end
 
     def destination_file_name
