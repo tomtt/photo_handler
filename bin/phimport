@@ -10,3 +10,5 @@ Usage: #{$0}
 This script will move files from a source of digital images to a location on disk. It is not implemented yet.
 EOT
 STDERR.puts usage
+
+puts PhotoHandler::Config.send(:config).inspect

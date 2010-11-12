@@ -1,0 +1,3 @@
+default:
+  image_source_directory: /bla
+  image_destination_directory: /foo
