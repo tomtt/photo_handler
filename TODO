@@ -1,0 +1,5 @@
+* Handle locked images
+* Take the name of the config as an argument
+* Restructure legacy imports
+* Import Leica images
+* Gracefully handle the case where one or both of the drives are not mounted
