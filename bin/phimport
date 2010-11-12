@@ -11,4 +11,8 @@ This script will move files from a source of digital images to a location on dis
 EOT
 STDERR.puts usage
 
-puts PhotoHandler::Config.send(:config).inspect
+PhotoHandler.source_images.each do |source_image|
+  puts "#{source_image} -> %s" %
+    File.join(PhotoHandler::Config.image_destination_directory,
+              PhotoHandler::Photo.new(source_image).destination_file_name)
+end
