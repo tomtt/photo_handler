@@ -16,6 +16,13 @@ module PhotoHandler
   end
 
   def self.source_images
+    raise <<EOT unless Config.image_extensions
+Please define in config/photo_handler which file extensions are to be transferred.
+For example:
+  image_extensions:
+  - .JPG
+  - .CR2
+EOT
     source_images = []
     Find.find(Config.image_source_directory) do |path|
       if Config.image_extensions.include?(File.extname(path))
