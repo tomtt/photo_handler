@@ -19,5 +19,13 @@ PhotoHandler.source_images.each do |source_image|
   unless File.exist?(dir)
     FileUtils.mkdir_p(dir, :verbose => true)
   end
-  FileUtils.mv(source_image, dest, :verbose => true)
+  if PhotoHandler::Config.transfer_mode == "move"
+    FileUtils.mv(source_image, dest, :verbose => true)
+  else
+    unless File.exist?(dest)
+      FileUtils.cp(source_image, dest, :verbose => true)
+    else
+      puts "#{source_image}: already copied"
+    end
+  end
 end

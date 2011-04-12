@@ -1,7 +1,8 @@
 default:
   image_source_directory: /Volumes/EOS_DIGITAL
-  image_destination_directory: /Volumes/CapsuleDrive/created/images/imported
+  image_destination_directory: /Users/tomtt/created/images/photos/imported
   image_extensions:
   - .JPG
   - .CR2
   destination_file_name: ":ext/:date/:original_name"
+  transfer_mode: copy
