@@ -2,6 +2,8 @@ require "bundler/setup"
 require "photo_handler/env"
 require "photo_handler/config"
 require "photo_handler/photo"
+require "find"
+
 if Gem.available?("ruby-debug")
   require "ruby-debug"
 end
