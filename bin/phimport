@@ -20,7 +20,11 @@ PhotoHandler.source_images.each do |source_image|
     FileUtils.mkdir_p(dir, :verbose => true)
   end
   if PhotoHandler::Config.transfer_mode == "move"
-    FileUtils.mv(source_image, dest, :verbose => true)
+    begin
+      FileUtils.mv(source_image, dest, :verbose => true)
+    rescue Errno::EPERM => e
+      puts "* Could not remove #{source_image}"
+    end
   else
     unless File.exist?(dest)
       FileUtils.cp(source_image, dest, :verbose => true)
