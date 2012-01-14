@@ -4,8 +4,9 @@ require "photo_handler/config"
 require "photo_handler/photo"
 require "find"
 
-if Gem.available?("ruby-debug")
+begin
   require "ruby-debug"
+rescue LoadError
 end
 
 module PhotoHandler
